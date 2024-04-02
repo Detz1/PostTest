@@ -1,0 +1,87 @@
+@startuml
+
+class models.Animal{
+    nombre:string
+    edad:integer
+    genero:string
+}
+
+class models.Especie{
+    nombre:string
+}
+
+class models.Recinto{
+    capacidad:integer
+    ubicacion:string
+}
+
+class models.Cuidador{
+    nombre:string
+    especialidad:string
+  
+}
+
+class models.Actividad{
+    dia:integer
+    horario:string
+    animal_id:integer
+}
+
+class models.EspecieAnimal{
+    animal_id:integer
+    especie_id:integer
+}
+
+class models.CuidadorAnimal{
+    animal_id:integer
+    cuidador_id:integer
+}
+
+class models.RecintoAnimal{
+    recinto_id:integer
+    animal_id:integer
+}
+
+class controllers.Animal{
+    resource()
+
+}
+class controllers.Especie{
+    resource()
+}
+
+class controllers.Recinto{
+    resource()
+}
+
+class controllers.Cuidador{
+    resource()
+}
+
+class controllers.Actividad{
+    resource()
+}
+
+class controllers.CuidadorAnimal{
+    resource()
+}
+
+class controllers.EspecieAnimal{
+    resource()
+}
+
+class controllers.RecintoAnimal{
+    resource()
+}
+
+models.Cuidador "*"*-- "1" models.CuidadorAnimal
+models.Animal "*"*-- "1" models.CuidadorAnimal
+
+models.Recinto "*"*-- "1" models.RecintoAnimal
+models.Animal "*"*-- "1" models.RecintoAnimal
+
+models.Especie "*"*-- "1" models.EspecieAnimal
+models.Animal "*"*-- "1" models.EspecieAnimal
+models.Animal "1" -- "*" models.Actividad
+
+@enduml
